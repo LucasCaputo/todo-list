@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="title">Todo List</div>
+    <form class="form">
+        <mat-form-field>
+            <mat-label>Search by description</mat-label>
+            <input matInput class="form-input">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Filter by priority</mat-label>
+            <mat-select [formControl]="filter" multiple>
+              <mat-option *ngFor="let filter of filterList" [value]="filter">{{filter}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+
+    <mat-card *ngFor="let item of items" class="card-container">
+        <mat-card-content class="card-content">
+            <div>
+                <span>{{item.description}}</span>
+                <p class="card-content__due-date">due date: {{item.endDate | date:'dd/MM/yyyy'}}</p>
+                <p class="card-content__priority">{{item.priority}}</p>
+            </div>
+            <div class="card-content__icon">
+                <mat-icon matListItemIcon class="card-content__icon-edit">edit</mat-icon>
+                <mat-icon matListItemIcon class="card-content__icon-delete">delete</mat-icon>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-paginator 
+        [length]="100"
+        [pageSize]="10"
+        aria-label="Select page">
+    </mat-paginator>
+
+</div>
